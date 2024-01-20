@@ -27,7 +27,7 @@ class TrainService {
   Future<void> _fetchTrainDataPeriodically() async {
     while (_listen) {
       try {
-        TrainModel updatedTrain = await trainDataDatasource.testGet();
+        TrainModel updatedTrain = await trainDataDatasource.get();
         _trainStreamController.add(updatedTrain);
       } catch (e) {
         _trainStreamController.addError(ServerException());
