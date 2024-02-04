@@ -30,7 +30,9 @@ class TrainService {
         TrainModel updatedTrain = await trainDataDatasource.get();
         _trainStreamController.add(updatedTrain);
       } catch (e) {
-        _trainStreamController.addError(ServerException());
+        if (e is ServerException) {
+          _trainStreamController.addError(e);
+        }
       }
       await Future.delayed(const Duration(seconds: 5));
     }

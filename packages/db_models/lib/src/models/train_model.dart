@@ -3,50 +3,29 @@
 //     final trainModel = trainModelFromJson(jsonString);
 
 import 'dart:convert';
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
-
-part 'train_model.g.dart';
 
 TrainModel trainModelFromJson(String str) =>
     TrainModel.fromJson(json.decode(str));
 
 String trainModelToJson(TrainModel data) => json.encode(data.toJson());
 
-@JsonSerializable()
-class TrainModel extends Equatable {
-  @JsonKey(name: "connection")
-  bool connection;
-  @JsonKey(name: "serviceLevel")
-  String serviceLevel;
-  @JsonKey(name: "gpsStatus")
-  String gpsStatus;
-  @JsonKey(name: "internet")
-  String internet;
-  @JsonKey(name: "latitude")
-  double latitude;
-  @JsonKey(name: "longitude")
-  double longitude;
-  @JsonKey(name: "tileY")
-  int tileY;
-  @JsonKey(name: "tileX")
-  int tileX;
-  @JsonKey(name: "series")
-  String series;
-  @JsonKey(name: "serverTime")
-  int serverTime;
-  @JsonKey(name: "speed")
-  int speed;
-  @JsonKey(name: "trainType")
-  String trainType;
-  @JsonKey(name: "tzn")
-  String tzn;
-  @JsonKey(name: "wagonClass")
-  String wagonClass;
-  @JsonKey(name: "connectivity")
-  Connectivity connectivity;
-  @JsonKey(name: "bapInstalled")
-  bool bapInstalled;
+class TrainModel {
+  final bool connection;
+  final String serviceLevel;
+  final String gpsStatus;
+  final String internet;
+  final double latitude;
+  final double longitude;
+  final int tileY;
+  final int tileX;
+  final String series;
+  final int serverTime;
+  final double speed;
+  final String trainType;
+  final String tzn;
+  final String wagonClass;
+  final Connectivity connectivity;
+  final bool bapInstalled;
 
   TrainModel({
     required this.connection,
@@ -78,7 +57,7 @@ class TrainModel extends Equatable {
     int? tileX,
     String? series,
     int? serverTime,
-    int? speed,
+    double? speed,
     String? trainType,
     String? tzn,
     String? wagonClass,
@@ -104,40 +83,49 @@ class TrainModel extends Equatable {
         bapInstalled: bapInstalled ?? this.bapInstalled,
       );
 
-  factory TrainModel.fromJson(Map<String, dynamic> json) =>
-      _$TrainModelFromJson(json);
+  factory TrainModel.fromJson(Map<String, dynamic> json) => TrainModel(
+        connection: json["connection"],
+        serviceLevel: json["serviceLevel"],
+        gpsStatus: json["gpsStatus"],
+        internet: json["internet"],
+        latitude: json["latitude"]?.toDouble(),
+        longitude: json["longitude"]?.toDouble(),
+        tileY: json["tileY"],
+        tileX: json["tileX"],
+        series: json["series"],
+        serverTime: json["serverTime"],
+        speed: json["speed"],
+        trainType: json["trainType"],
+        tzn: json["tzn"],
+        wagonClass: json["wagonClass"],
+        connectivity: Connectivity.fromJson(json["connectivity"]),
+        bapInstalled: json["bapInstalled"],
+      );
 
-  Map<String, dynamic> toJson() => _$TrainModelToJson(this);
-
-  @override
-  List<Object?> get props => [
-        connection,
-        serviceLevel,
-        gpsStatus,
-        internet,
-        latitude,
-        longitude,
-        tileY,
-        tileX,
-        series,
-        serverTime,
-        speed,
-        trainType,
-        tzn,
-        wagonClass,
-        connectivity,
-        bapInstalled,
-      ];
+  Map<String, dynamic> toJson() => {
+        "connection": connection,
+        "serviceLevel": serviceLevel,
+        "gpsStatus": gpsStatus,
+        "internet": internet,
+        "latitude": latitude,
+        "longitude": longitude,
+        "tileY": tileY,
+        "tileX": tileX,
+        "series": series,
+        "serverTime": serverTime,
+        "speed": speed,
+        "trainType": trainType,
+        "tzn": tzn,
+        "wagonClass": wagonClass,
+        "connectivity": connectivity.toJson(),
+        "bapInstalled": bapInstalled,
+      };
 }
 
-@JsonSerializable()
-class Connectivity extends Equatable {
-  @JsonKey(name: "currentState")
-  String currentState;
-  @JsonKey(name: "nextState")
-  String nextState;
-  @JsonKey(name: "remainingTimeSeconds")
-  int remainingTimeSeconds;
+class Connectivity {
+  final String currentState;
+  final String nextState;
+  final int remainingTimeSeconds;
 
   Connectivity({
     required this.currentState,
@@ -156,11 +144,15 @@ class Connectivity extends Equatable {
         remainingTimeSeconds: remainingTimeSeconds ?? this.remainingTimeSeconds,
       );
 
-  factory Connectivity.fromJson(Map<String, dynamic> json) =>
-      _$ConnectivityFromJson(json);
+  factory Connectivity.fromJson(Map<String, dynamic> json) => Connectivity(
+        currentState: json["currentState"],
+        nextState: json["nextState"],
+        remainingTimeSeconds: json["remainingTimeSeconds"],
+      );
 
-  Map<String, dynamic> toJson() => _$ConnectivityToJson(this);
-
-  @override
-  List<Object?> get props => [currentState, nextState, remainingTimeSeconds];
+  Map<String, dynamic> toJson() => {
+        "currentState": currentState,
+        "nextState": nextState,
+        "remainingTimeSeconds": remainingTimeSeconds,
+      };
 }

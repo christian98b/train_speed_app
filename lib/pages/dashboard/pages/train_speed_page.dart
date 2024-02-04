@@ -13,9 +13,7 @@ class TrainSpeedPage extends StatefulWidget {
 }
 
 class _TrainSpeedPageState extends State<TrainSpeedPage> {
-  double speed = 20;
   final TrainService trainService = sl.get<TrainService>();
-  late Stream trainStream;
 
   @override
   void initState() {
@@ -48,8 +46,13 @@ class _TrainSpeedPageState extends State<TrainSpeedPage> {
                     Text('Geschwindigkeit: ${snapshot.data!.speed} km/h',
                         style: Theme.of(context).textTheme.bodyLarge),
                   ]);
+                }
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
                 } else {
-                  return const Text("Ein Fehler ist aufgetreten");
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
               })),
           const SizedBox(height: 20.0),
