@@ -28,6 +28,8 @@ class _DashboardNavigationDrawerState extends State<DashboardNavigationDrawer> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.wifi_rounded),
                 label: "Netzwerkgeschwindigkeit"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: "Einstellungen")
           ],
         );
       },
