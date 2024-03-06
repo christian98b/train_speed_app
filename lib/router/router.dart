@@ -11,6 +11,7 @@ class AppRouter extends $AppRouter {
           AutoRoute(
               page: TrainSpeedRoute.page, initial: true, maintainState: true),
           AutoRoute(page: InternetStateRoute.page, maintainState: true),
+          AutoRoute(page: SettingsRoute.page, maintainState: true),
         ])
       ];
 }
