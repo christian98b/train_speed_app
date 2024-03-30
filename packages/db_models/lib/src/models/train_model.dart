@@ -10,40 +10,40 @@ TrainModel trainModelFromJson(String str) =>
 String trainModelToJson(TrainModel data) => json.encode(data.toJson());
 
 class TrainModel {
-  final bool connection;
-  final String serviceLevel;
-  final String gpsStatus;
-  final String internet;
-  final double latitude;
-  final double longitude;
-  final int tileY;
-  final int tileX;
-  final String series;
-  final int serverTime;
-  final double speed;
-  final String trainType;
-  final String tzn;
-  final String wagonClass;
-  final Connectivity connectivity;
-  final bool bapInstalled;
+  final bool? connection;
+  final String? serviceLevel;
+  final String? gpsStatus;
+  final String? internet;
+  final double? latitude;
+  final double? longitude;
+  final int? tileY;
+  final int? tileX;
+  final String? series;
+  final int? serverTime;
+  final double? speed;
+  final String? trainType;
+  final String? tzn;
+  final String? wagonClass;
+  final Connectivity? connectivity;
+  final bool? bapInstalled;
 
   TrainModel({
-    required this.connection,
-    required this.serviceLevel,
-    required this.gpsStatus,
-    required this.internet,
-    required this.latitude,
-    required this.longitude,
-    required this.tileY,
-    required this.tileX,
-    required this.series,
-    required this.serverTime,
-    required this.speed,
-    required this.trainType,
-    required this.tzn,
-    required this.wagonClass,
-    required this.connectivity,
-    required this.bapInstalled,
+    this.connection,
+    this.serviceLevel,
+    this.gpsStatus,
+    this.internet,
+    this.latitude,
+    this.longitude,
+    this.tileY,
+    this.tileX,
+    this.series,
+    this.serverTime,
+    this.speed,
+    this.trainType,
+    this.tzn,
+    this.wagonClass,
+    this.connectivity,
+    this.bapInstalled,
   });
 
   TrainModel copyWith({
@@ -117,20 +117,20 @@ class TrainModel {
         "trainType": trainType,
         "tzn": tzn,
         "wagonClass": wagonClass,
-        "connectivity": connectivity.toJson(),
+        "connectivity": connectivity?.toJson(),
         "bapInstalled": bapInstalled,
       };
 }
 
 class Connectivity {
-  final String currentState;
-  final String nextState;
-  final int remainingTimeSeconds;
+  final String? currentState;
+  final String? nextState;
+  final int? remainingTimeSeconds;
 
   Connectivity({
-    required this.currentState,
-    required this.nextState,
-    required this.remainingTimeSeconds,
+    this.currentState,
+    this.nextState,
+    this.remainingTimeSeconds,
   });
 
   Connectivity copyWith({

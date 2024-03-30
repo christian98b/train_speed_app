@@ -43,12 +43,12 @@ class _InternetStatePageState extends State<InternetStatePage> {
                         children: [
                           const SizedBox(height: 20.0),
                           Text(
-                              'Aktuelles Internetgeschwindigkeit: ${snapshot.data!.connectivity.currentState}',
+                              'Aktuelles Internetgeschwindigkeit: ${snapshot.data!.connectivity?.currentState}',
                               style: Theme.of(context).textTheme.bodyLarge),
                           Text(
-                              'Verbleibend für: ${snapshot.data!.connectivity.remainingTimeSeconds} Sekunden'),
+                              'Verbleibend für: ${snapshot.data!.connectivity?.remainingTimeSeconds} Sekunden'),
                           Text(
-                              'Nächste Internetgeschwindigkeit: ${snapshot.data!.connectivity.nextState}')
+                              'Nächste Internetgeschwindigkeit: ${snapshot.data!.connectivity?.nextState}')
                         ]),
                   );
                 }

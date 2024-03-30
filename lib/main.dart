@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
-      title: 'Flutter Demo',
+      title: 'DB Speed App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

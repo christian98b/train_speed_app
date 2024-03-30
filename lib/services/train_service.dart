@@ -30,6 +30,7 @@ class TrainService {
         TrainModel updatedTrain = await trainDataDatasource.get();
         _trainStreamController.add(updatedTrain);
       } catch (e) {
+        print(e);
         if (e is ServerException) {
           _trainStreamController.addError(e);
         }
