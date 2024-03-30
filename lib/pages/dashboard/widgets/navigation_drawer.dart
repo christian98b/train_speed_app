@@ -11,15 +11,32 @@ class DashboardNavigationDrawer extends StatefulWidget {
 }
 
 class _DashboardNavigationDrawerState extends State<DashboardNavigationDrawer> {
+  final List<String> routeList = [
+    "Train Speed Page",
+    "Internet Speed Page",
+    "Settings Page"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
+      appBarBuilder: (context, tabsRouter) {
+        return AppBar(
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+          title: Text(routeList[tabsRouter.activeIndex]),
+        );
+      },
       routes: const [
         TrainSpeedRoute(),
         InternetStateRoute(),
+        SettingsRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
+          backgroundColor: Colors.red,
+          unselectedItemColor: Colors.white,
+          selectedItemColor: Colors.black,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           items: const [
@@ -28,6 +45,8 @@ class _DashboardNavigationDrawerState extends State<DashboardNavigationDrawer> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.wifi_rounded),
                 label: "Netzwerkgeschwindigkeit"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: "Einstellungen")
           ],
         );
       },

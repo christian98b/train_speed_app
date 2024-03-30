@@ -33,13 +33,18 @@ class TrainDataDatasourceImpl extends TrainDataDatasource {
 
   @override
   Future<TrainModel> testGet() {
-    final List<TrainModel> trainList =
-        trainTestData.map((e) => TrainModel.fromJson(e)).toList();
+    try {
+      final List<TrainModel> trainList =
+          trainTestData.map((e) => TrainModel.fromJson(e)).toList();
 
-    final random = Random();
-    final randomIndex = random.nextInt(trainList.length);
-    final randomElement = trainList[randomIndex];
+      final random = Random();
+      final randomIndex = random.nextInt(trainList.length);
+      final randomElement = trainList[randomIndex];
 
-    return Future.value(randomElement);
+      return Future.value(randomElement);
+    } catch (e) {
+      print(e);
+      throw ServerException(error: e.toString());
+    }
   }
 }

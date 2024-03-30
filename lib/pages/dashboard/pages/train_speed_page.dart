@@ -38,20 +38,43 @@ class _TrainSpeedPageState extends State<TrainSpeedPage> {
               builder: ((context, snapshot) {
                 if (snapshot.hasData) {
                   return Column(children: [
-                    Text("${snapshot.data!.tzn}"),
+                    Text("${snapshot.data?.tzn}"),
                     Lottie.asset(
                       'assets/lottie/train.json',
                     ),
                     const SizedBox(height: 20.0),
-                    Text('Geschwindigkeit: ${snapshot.data!.speed} km/h',
-                        style: Theme.of(context).textTheme.bodyLarge),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Geschwindigkeit"),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text('${snapshot.data?.speed} km/h',
+                                style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
+                      ),
+                    ),
                   ]);
                 }
                 if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 } else {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
                   );
                 }
               })),
