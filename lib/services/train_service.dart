@@ -10,6 +10,7 @@ class TrainService {
 
   TrainService({required this.trainDataDatasource}) {
     _trainStreamController = StreamController<TrainModel>.broadcast();
+    startListeningToTrain();
   }
 
   Stream<TrainModel> get trainStream => _trainStreamController.stream;
@@ -27,7 +28,7 @@ class TrainService {
   Future<void> _fetchTrainDataPeriodically() async {
     while (_listen) {
       try {
-        TrainModel updatedTrain = await trainDataDatasource.testGet();
+        TrainModel updatedTrain = await trainDataDatasource.get();
         _trainStreamController.add(updatedTrain);
       } catch (e) {
         print(e);

@@ -18,7 +18,6 @@ class _InternetStatePageState extends State<InternetStatePage> {
   @override
   void initState() {
     super.initState();
-    trainService.startListeningToTrain();
   }
 
   @override

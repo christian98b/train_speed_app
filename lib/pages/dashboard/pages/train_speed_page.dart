@@ -18,7 +18,6 @@ class _TrainSpeedPageState extends State<TrainSpeedPage> {
   @override
   void initState() {
     super.initState();
-    trainService.startListeningToTrain();
   }
 
   @override
